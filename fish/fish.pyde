@@ -30,8 +30,8 @@ def draw():
         background("#FFFFFF")
         fill("#61B5FC")
         rect(0, 0, 4000, 2000)
-        fill("#A7D39E")
-        rect(0, 400, 4000, 200)
+        fill(0, 100, 0)
+        rect(0, 800, 4000, 500)
         displayDumpster(560, 448, 200, 140, 511, 348)
     
 def titleimages():
