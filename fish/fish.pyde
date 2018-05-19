@@ -54,8 +54,8 @@ def draw():
         displayDumpster(560, 448, 200, 140, 511, 348)
         flag()
         riseFlag()
-        bbqGrill()
-        closeGrill()
+        bbqGrill(200)
+        closeGrill(200)
         image(itsher, 500- counter, 430 + counter, itsher.width * 2, itsher.height * 2)
         noStroke()
         rect(0, 800, 600, 500)
@@ -367,59 +367,59 @@ def riseFlag():
     if flagY== 50:
         yTrue = False
         
-def bbqGrill():
+def bbqGrill(xoffset):
     #grill
     fill(0)
-    rect(530, 550, 135, 130)
-    rect(520, 550, 15, 150)
+    rect(530-xoffset, 550, 135, 130)
+    rect(520-xoffset, 550, 15, 150)
     
     #grillWheel
     noFill()
     strokeWeight(1)
-    line(666, 660, 666, 700)
-    line(635, 680, 685, 680)
-    line(680, 665, 650, 695)
-    line(650, 665, 680, 695)
+    line(666-xoffset, 660, 666-xoffset, 700)
+    line(635-xoffset, 680, 685-xoffset, 680)
+    line(680-xoffset, 665, 650-xoffset, 695)
+    line(650-xoffset, 665, 680-xoffset, 695)
     strokeWeight(3)
-    ellipse(665, 680, 40, 40)
+    ellipse(665-xoffset, 680, 40, 40)
     
     #grill top
     fill(0)
     beginShape()
-    vertex(683, 517)
-    vertex(683, 528)
-    vertex(710, 504)
-    vertex(705, 504)
-    vertex(683, 517)
+    vertex(683-xoffset, 517)
+    vertex(683-xoffset, 528)
+    vertex(710-xoffset, 504)
+    vertex(705-xoffset, 504)
+    vertex(683-xoffset, 517)
     endShape()
-    ellipse(708, 503, 17, 17)
+    ellipse(708-xoffset, 503, 17, 17)
     fill(120)
     noStroke()
-    rect(500, 500, 185, 50)
+    rect(500-xoffset, 500, 185, 50)
     
     #Burners
     fill(255)
     for burner in range(520, 685, 50):
         stroke(0)
-        ellipse(burner, 525, 20, 20)    
-        line(burner, 520, burner, 525)
+        ellipse(burner-xoffset, 525, 20, 20)    
+        line(burner-xoffset, 520, burner, 525)
         
     #stroke(0)
     
     
-def closeGrill():
+def closeGrill(xoffset):
     global grillY, move, dubb
     noStroke()
     fill("#460000")
-    rect(500, 445, 185, 55, dubb, dubb, 0, 0)
+    rect(500-xoffset, 445, 185, 55, dubb, dubb, 0, 0)
     fill(0)
-    rect(500, grillY, 185, 55, 45, 45, 0, 0)
+    rect(500-xoffset, grillY, 185, 55, 45, 45, 0, 0)
     
     fill(255)
-    ellipse(592, grillY + 25, 25, 25)
+    ellipse(592-xoffset, grillY + 25, 25, 25)
     
     stroke(170, 2, 2)
-    line(592, grillY + 25, 592, grillY + 15)
+    line(592-xoffset, grillY + 25, 592-xoffset, grillY + 15)
     stroke(0)
     if grillY == 420:
         dubb=0
