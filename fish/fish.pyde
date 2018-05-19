@@ -5,10 +5,16 @@ y3=348
 move_l=False
 speed1=10
 speed2=10
+flagY = 400
+yTrue = True
+grillY = 445
+dubb = 45
+move = False
 
+    
 
 def setup():
-    global img, mama, play, help, table, file, gameplaying, x2, y2, y3, move_l, click1, speed1, speed2
+    global textvar, img, mama, play, help, table, file, gameplaying, x2, y2, y3, move_l, click1, speed1, speed2, itsher, counter, neg
 
     size(1000, 1000)
     file = SoundFile(this, "mama.mp3")
@@ -17,9 +23,22 @@ def setup():
     play = loadImage("letscook.png")
     help = loadImage("help.png")
     table = loadImage("table.png")
+    itsher = loadImage("mamaimg.png")
+    counter = 1
+    textvar = 0
+    neg = False
     file.play()
     gameplaying = 0
 def draw():
+    global neg, counter
+    if neg == False:
+        counter += 1
+    else:
+        counter -= 1
+        if counter == 0:
+            neg = False
+        
+        
     if gameplaying == 0:
         bgtexture(0)
         fishbody(80, 150)
@@ -31,9 +50,55 @@ def draw():
         fill("#61B5FC")
         rect(0, 0, 4000, 2000)
         fill("#A7D39E")
-        rect(0, 400, 4000, 200)
+        rect(0, 500, 4000, 700)
         displayDumpster(560, 448, 200, 140, 511, 348)
+        flag()
+        riseFlag()
+        bbqGrill()
+        closeGrill()
+        image(itsher, 500- counter, 430 + counter, itsher.width * 2, itsher.height * 2)
+        noStroke()
+        rect(0, 800, 600, 500)
+        textcall()
     
+    if counter >= 10:
+        neg = True
+     
+            
+def textcall():
+    global textvar
+    textSize(40)
+    fill("#000000")
+    if mousePressed:
+        textvar += 1
+    if textvar == 0:
+        text("the name's mama. click the screen to advance", 10, 850, 600, 8000)
+    elif textvar == 1:
+        text("originally, we wanted this to be a game", 10, 850, 600, 8000)
+    elif textvar == 2:
+        text("but we ran out of time :(", 10, 850, 600, 8000)
+    elif textvar == 3:
+        text("so now it's just an interactive scene", 10, 850, 600, 8000)
+    elif textvar == 4:
+        text("haha", 10, 850, 600, 8000)
+    elif textvar == 5:
+        text("hahahahahaha...", 10, 850, 600, 8000)
+    elif textvar == 6:
+        text("hah...", 10, 850, 600, 8000)
+    elif textvar == 7:
+        text("moving on", 10, 850, 600, 8000)
+    elif textvar == 8:
+        text("what else? hmm", 10, 850, 600, 8000)
+    elif textvar == 9:
+        text("ever hear of GitHub?", 10, 850, 600, 8000)
+    elif textvar == 10:
+        text("it's literally my life", 10, 850, 600, 8000)
+    elif textvar == 11:
+        text("sometimes mac files screw it up though", 10, 850, 600, 8000)
+    elif textvar == 12:
+        text("<3 version control", 10, 850, 600, 8000)
+    elif textvar == 13:
+        text("man, I'm tired", 10, 850, 600, 8000)
 def titleimages():
     image(mama, 150, 50, mama.width, mama.height)
     image(play, 250, 700, play.width + 50, play.height + 12)
@@ -256,6 +321,119 @@ def displayDumpster(x, y, w, h, x1, y1):
         x+=20
     x=560
     
+    #FLAG DISPLAY
+def flag():
+    rectMode(CORNER)
+    noStroke()
+    global flagY
+#flag post   
+    fill(193,193,180)
+    rect(85, 25, 10, 575)
+#pole string   
+    fill(0)
+    rect(82, 25,1, 575)
+#knob    
+    fill(244,238,66)
+    ellipse(91, 26, 15, 15)
+#flag    
+    fill(255)
+    rect(95, flagY, 165, 100)
+#blue flag lines    
+    fill(0,0,100)
+    rect(95, flagY, 75, 55)
+#red flag lines    
+    fill(180,0,0)
+    rect(170, flagY, 90, 10)
+    rect(170, flagY+ 20, 90, 10)
+    rect(170, flagY+ 40, 90, 10)
+    rect(95, flagY+ 59, 165, 10)
+    rect(95, flagY+ 80, 165, 10)
+#stars    
+    fill(200)
+    ellipse(110, flagY+ 10, 5, 5)
+    ellipse(130, flagY+ 10, 5, 5)
+    ellipse(150, flagY+ 10, 5, 5)
+    ellipse(110, flagY+ 28, 5, 5)
+    ellipse(130, flagY + 28, 5, 5)
+    ellipse(150, flagY+ 28, 5, 5)
+    ellipse(110, flagY+ 45, 5, 5)
+    ellipse(130, flagY+ 45, 5, 5)
+    ellipse(150, flagY+ 45, 5, 5)
+    
+def riseFlag():
+    global yTrue, flagY
+    if yTrue == True:
+        flagY-= 1
+    if flagY== 50:
+        yTrue = False
+        
+def bbqGrill():
+    #grill
+    fill(0)
+    rect(530, 550, 135, 130)
+    rect(520, 550, 15, 150)
+    
+    #grillWheel
+    noFill()
+    strokeWeight(1)
+    line(666, 660, 666, 700)
+    line(635, 680, 685, 680)
+    line(680, 665, 650, 695)
+    line(650, 665, 680, 695)
+    strokeWeight(3)
+    ellipse(665, 680, 40, 40)
+    
+    #grill top
+    fill(0)
+    beginShape()
+    vertex(683, 517)
+    vertex(683, 528)
+    vertex(710, 504)
+    vertex(705, 504)
+    vertex(683, 517)
+    endShape()
+    ellipse(708, 503, 17, 17)
+    fill(120)
+    noStroke()
+    rect(500, 500, 185, 50)
+    
+    #Burners
+    fill(255)
+    for burner in range(520, 685, 50):
+        stroke(0)
+        ellipse(burner, 525, 20, 20)    
+        line(burner, 520, burner, 525)
+        
+    #stroke(0)
+    
+    
+def closeGrill():
+    global grillY, move, dubb
+    noStroke()
+    fill("#460000")
+    rect(500, 445, 185, 55, dubb, dubb, 0, 0)
+    fill(0)
+    rect(500, grillY, 185, 55, 45, 45, 0, 0)
+    
+    fill(255)
+    ellipse(592, grillY + 25, 25, 25)
+    
+    stroke(170, 2, 2)
+    line(592, grillY + 25, 592, grillY + 15)
+    stroke(0)
+    if grillY == 420:
+        dubb=0
+    if keyPressed:
+        if key == 'U' or key == 'u':
+            grillY -= 1
+            if grillY <400:
+                grillY= 400
+            constrain(grillY,445,400)
+
+
+# test
+
+
 def mousePressed():
     global gameplaying
     if mouseX>=250 and mouseX<= 700 and mouseY >= 700 and mouseY <= 800:
@@ -263,3 +441,4 @@ def mousePressed():
         gameplaying += 1
         background("#FFFFFF")
         print(gameplaying)
+    
